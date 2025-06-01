@@ -1,1 +1,1 @@
-# pern-todo
+# pern-todo-client
