@@ -76,6 +76,10 @@ app.delete('/todos/:id', async (req, res) => {
         console.error(err.message);
     }
 });
+app.get("/", (req, res) => {
+    res.send("✅ API is running!");
+  });
+  
 
 // ✅ Start the server
 app.listen(port, () => {
