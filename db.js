@@ -1,13 +1,14 @@
 const { Pool } = require("pg");
+require("dotenv").config(); // 👉 এটি অবশ্যই উপরে রাখতে হবে
 
 const pool = new Pool({
-  user: "perntodo_72lm_user",
-  password: "Y6opf1O4EjHjOBIwB29jfSLFisyqUqqq",
-  host: "dpg-d0ujn32dbo4c73b7nv6g-a.singapore-postgres.render.com",
-  port: 5432,
-  database: "perntodo_72lm",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
   ssl: {
-    rejectUnauthorized: false // Needed for Render
+    rejectUnauthorized: false
   }
 });
 

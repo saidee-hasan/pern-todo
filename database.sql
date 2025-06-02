@@ -14,8 +14,10 @@ CREATE DATABASE perntodo;
 CREATE TABLE todo (
     todo_id SERIAL PRIMARY KEY,
     description VARCHAR(260),
-    name VARCHAR(50)
+    name VARCHAR(50),
+    priority VARCHAR(50)
 );
+
 
 
 SELECT * FROM todo;

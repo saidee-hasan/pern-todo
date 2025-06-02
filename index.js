@@ -13,15 +13,14 @@ app.use(express.json()); // To parse JSON bodies
 // POST route to create a todo
 app.post('/todos', async (req, res) => {
     try {
-        const { description, name } = req.body;
-        
-console.log(req.body);
- 
+        const { description, name, priority } = req.body; // ✅ priority যোগ করা হয়েছে
+
+        console.log(req.body);
+
         const newTodo = await pool.query(
-            'INSERT INTO todo (description, name) VALUES ($1, $2) RETURNING *',
-            [description, name]
-          );
-          
+            'INSERT INTO todo (description, name, priority) VALUES ($1, $2, $3) RETURNING *',
+            [description, name, priority]
+        );
 
         res.json(newTodo.rows[0]);
     } catch (err) {
@@ -55,16 +54,19 @@ app.get('/todos/:id', async (req, res) => {
 app.put('/todos/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { description } = req.body;
+        const { description, priority } = req.body;
+
         await pool.query(
-            'UPDATE todo SET description = $1 WHERE todo_id = $2',
-            [description, id]
+            'UPDATE todo SET description = $1, priority = $2 WHERE todo_id = $3',
+            [description, priority, id]
         );
+
         res.json({ message: "Todo was updated!" });
     } catch (err) {
         console.error(err.message);
     }
 });
+
 
 // 👉 Delete a todo
 app.delete('/todos/:id', async (req, res) => {
