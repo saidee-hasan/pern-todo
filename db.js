@@ -1,14 +1,13 @@
-require('dotenv').config();
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
+  user: "pern_todo_server_user",
+  password: "rFHg4hRkOd4C3DEkMCdiyXuPsHfmvvIR",
+  host: "dpg-d0uilu63jp1c7384nnug-a.singapore-postgres.render.com",
+  port: 5432,
+  database: "pern_todo_server",
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false // Render requires SSL connection
   }
 });
 
